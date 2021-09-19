@@ -1,24 +1,24 @@
 package com.edu.unbosque.ciclo3back.model;
-import java.math.BigInteger;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Productos {
     
     @Id
-    @Column(name = "codigo_producto")
-    private long cod_prod;
+    @OneToOne
+    @JoinColumn(name = "codigo_producto")
+    private DetalleVentas codigoProducto;
 
     @Column(name = "iva_compra", nullable = false)
     private double iva_compra;
 
-    @Column(name = "nit_proveedor", nullable = false, unique = true)
-    private BigInteger nit_proveedor;
+    @OneToOne
+    @JoinColumn(name = "nit_proveedor", nullable = false, unique = true)
+    private Proveedores proveedor;
 
     @Column(name = "nombre_producto", nullable = false, length = 255)
     private String nombre_producto;
@@ -30,12 +30,12 @@ public class Productos {
     private double precio_venta;
 
 
-    public long getCod_prod() {
-        return this.cod_prod;
+    public DetalleVentas getCodigoProducto() {
+        return this.codigoProducto;
     }
 
-    public void setCod_prod(long cod_prod) {
-        this.cod_prod = cod_prod;
+    public void setCodigoProducto(DetalleVentas codigoProducto) {
+        this.codigoProducto = codigoProducto;
     }
 
     public double getIva_compra() {
@@ -46,12 +46,12 @@ public class Productos {
         this.iva_compra = iva_compra;
     }
 
-    public BigInteger getNit_proveedor() {
-        return this.nit_proveedor;
+    public Proveedores getProveedor() {
+        return this.proveedor;
     }
 
-    public void setNit_proveedor(BigInteger nit_proveedor) {
-        this.nit_proveedor = nit_proveedor;
+    public void setProveedor(Proveedores proveedor) {
+        this.proveedor = proveedor;
     }
 
     public String getNombre_producto() {
@@ -77,29 +77,4 @@ public class Productos {
     public void setPrecio_venta(double precio_venta) {
         this.precio_venta = precio_venta;
     }
-
-    public Proveedores getProveedor() {
-        return this.proveedor;
-    }
-
-    public void setProveedor(Proveedores proveedor) {
-        this.proveedor = proveedor;
-    }
-
-    public DetalleVentas getCodigoProducto() {
-        return this.codigoProducto;
-    }
-
-    public void setCodigoProducto(DetalleVentas codigoProducto) {
-        this.codigoProducto = codigoProducto;
-    }    
-
-    @OneToOne
-    @JoinColumn(name = "nit_proveedor")
-    private Proveedores proveedor;
-
-    @OneToOne
-    @JoinColumn(name = "codigo_producto")
-    private DetalleVentas codigoProducto;
-
 }
