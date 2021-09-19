@@ -22,4 +22,5 @@ public class Proveedores {
     @Column(name = "telefono_proveedor", nullable = false)
     private double telefono_proveedor;
 
+    
 }
